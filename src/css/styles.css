@@ -174,10 +174,16 @@ body {
   margin: 20px auto;
 }
 .items {
+  max-height: 60vh;
   font-family: roboto;
   font-size: 22px;
   font-weight: 300;
   color: #ffffff;
+  overflow-y: scroll;
+  padding-right: 4px;
+}
+.items::-webkit-scrollbar {
+  display: none;
 }
 .items div {
   display: flex;

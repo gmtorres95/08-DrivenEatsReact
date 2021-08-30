@@ -7,10 +7,19 @@ function updateOrder(menu) {
     const order = [];
     for(let i = 0; i < menu.length; i++) {
         for(let j = 0; j < menu[i].options.length; j++) {
-            if(menu[i].options[j].amount > 0) {
+            if(menu[i].options[j].amount > 1) {
                 order.push({
-                    name: `${menu[i].options[j].amount}x ${menu[i].options[j].name }`,
-                    price: menu[i].options[j].price * menu[i].options[j].amount
+                    name: `${menu[i].options[j].name} (${menu[i].options[j].amount}x)`,
+                    price: menu[i].options[j].price * menu[i].options[j].amount,
+                    type: menu[i].options[j].type,
+                    amount: menu[i].options[j].amount
+                });
+            }
+            else if(menu[i].options[j].amount === 1) {
+                order.push({
+                    name: `${menu[i].options[j].name}`,
+                    price: menu[i].options[j].price,
+                    type: menu[i].options[j].type,
                 });
             }
         }
@@ -18,9 +27,9 @@ function updateOrder(menu) {
     return order;
 }
 
-function countAmount(listOfItens) {
+function countAmount(listOfitems) {
     let counter = 0;
-    listOfItens.forEach((iten) => counter += iten.amount)
+    listOfitems.forEach((item) => counter += item.amount)
     return counter;
 }
 
@@ -28,8 +37,10 @@ function updateState(menu) {
     const dishesAmount = countAmount(menu[0].options);
     const drinksAmount = countAmount(menu[1].options);
     const dessertsAmount = countAmount(menu[2].options);
-    if(dishesAmount && drinksAmount && dessertsAmount) return {classStyle: "ready", text: "Fechar Pedido"};
-    return {classStyle: "not-ready", text: "Selecione os 3 itens para fechar o pedido"};
+    if(dishesAmount && drinksAmount && dessertsAmount) {
+        return {classStyle: "ready", text: "Fechar Pedido", ready: true};
+    }
+    return {classStyle: "not-ready", text: "Selecione os 3 itens para fechar o pedido", ready: false};
 }
 
 export default function App() {
@@ -59,6 +70,7 @@ export default function App() {
                     name: "Strogonoff de Frango",
                     description: "Arroz, strogonoff de frango e batata palha.",
                     price: 13.9,
+                    type: "Prato",
                     amount: strogonoffAmount,
                     SetAmount: SetStrogonoffAmount
                 },
@@ -67,6 +79,7 @@ export default function App() {
                     name: "Frango à Parmegiana",
                     description: "Arroz, fritas, frango à parmegiana e salada.",
                     price: 15.4,
+                    type: "Prato",
                     amount: parmegianaAmount,
                     SetAmount: SetParmegianaAmount
                 },
@@ -75,6 +88,7 @@ export default function App() {
                     name: "Frango à Milanesa",
                     description: "Arroz, farofa, fritas e frango à milanesa.",
                     price: 15.9,
+                    type: "Prato",
                     amount: milanesaAmount,
                     SetAmount: SetMilanesaAmount
                 },
@@ -83,6 +97,7 @@ export default function App() {
                     name: "Frango Grelhado",
                     description: "Arroz, feijão, farofa e frango grelhado.",
                     price: 14.9,
+                    type: "Prato",
                     amount: grelhadoAmount,
                     SetAmount: SetGrelhadoAmount
                 },
@@ -91,6 +106,7 @@ export default function App() {
                     name: "Linguiça de Lombo",
                     description: "Arroz, feijão, farofa, linguiça de lombo acebolada e salada.",
                     price: 14.4,
+                    type: "Prato",
                     amount: liguiçaAmount,
                     SetAmount: SetLiguiçaAmount
                 },
@@ -99,6 +115,7 @@ export default function App() {
                     name: "Peixe à Milanesa",
                     description: "Arroz, fritas, filé de peixe à milanesa e salada.",
                     price: 19.9,
+                    type: "Prato",
                     amount: peixeAmount,
                     SetAmount: SetPeixeAmount
                 }
@@ -112,6 +129,7 @@ export default function App() {
                     name: "Coca-Cola",
                     description: "Lata de 350ml.",
                     price: 5,
+                    type: "Bebida",
                     amount: cocaAmount,
                     SetAmount: SetCocaAmount
                 },
@@ -120,6 +138,7 @@ export default function App() {
                     name: "Guaraná Kuat",
                     description: "Lata de 350ml.",
                     price: 4,
+                    type: "Bebida",
                     amount: kuatAmount,
                     SetAmount: SetKuatAmount
                 },
@@ -128,6 +147,7 @@ export default function App() {
                     name: "Sprite",
                     description: "Lata de 350ml.",
                     price: 4.5,
+                    type: "Bebida",
                     amount: spriteAmount,
                     SetAmount: SetSpriteAmount
                 },
@@ -136,6 +156,7 @@ export default function App() {
                     name: "Chá Gelado Mate",
                     description: "Garaffa de 450ml sabor limão.",
                     price: 6,
+                    type: "Bebida",
                     amount: mateAmount,
                     SetAmount: SetMateAmount
                 },
@@ -144,6 +165,7 @@ export default function App() {
                     name: "Água Mineral",
                     description: "Garaffa de 500ml sem gás.",
                     price: 1,
+                    type: "Bebida",
                     amount: aguaAmount,
                     SetAmount: SetAguaAmount
                 }
@@ -157,6 +179,7 @@ export default function App() {
                     name: "Bombom de Morango",
                     description: "Com brigadeiro cremoso e casquinha de chocolate!",
                     price: 3,
+                    type: "Sobremesa",
                     amount: bombomAmount,
                     SetAmount: SetBombomAmount
                 },
@@ -165,6 +188,7 @@ export default function App() {
                     name: "Bolo de Brigadeiro de Caramelo",
                     description: "Nossa receita especial, recheado com Nutella.",
                     price: 9,
+                    type: "Sobremesa",
                     amount: boloAmount,
                     SetAmount: SetBoloAmount
                 },
@@ -173,6 +197,7 @@ export default function App() {
                     name: "Brownie",
                     description: "Ideal para comer tomando um cafézinho.",
                     price: 8,
+                    type: "Sobremesa",
                     amount: brownieAmount,
                     SetAmount: SetBrownieAmount
                 },
@@ -181,6 +206,7 @@ export default function App() {
                     name: "Cookie de Chocotone",
                     description: "Massa de laranja, com gotas de chocolate e recheado com Nutella!",
                     price: 6,
+                    type: "Sobremesa",
                     amount: cookieAmount,
                     SetAmount: SetCookieAmount
                 },
@@ -189,6 +215,7 @@ export default function App() {
                     name: "Pipoco",
                     description: "Nosso brigadeiro que estoura na boca! Recheado com leite condensado.",
                     price: 5,
+                    type: "Sobremesa",
                     amount: pipocoAmount,
                     SetAmount: SetPipocoAmount
                 },
@@ -197,6 +224,7 @@ export default function App() {
                     name: "Gelatina de Morango Recheada",
                     description: "Nossa famosa gelatina recheada de leite condensado.",
                     price: 2.5,
+                    type: "Sobremesa",
                     amount: gelatinaAmount,
                     SetAmount: SetGelatinaAmount
                 }
@@ -209,49 +237,11 @@ export default function App() {
     state = updateState(menu);
     order = updateOrder(menu);
 
-    console.log(order);
-
     return (
         <div>
             <Header />
-            {menu.map((itens) => <Category itens={itens} />)}
-            <FinishOrder state={state} />
-            
-
-
-
-            <div className="checkout-window hidden">
-                <div className="checkout-box">
-                    <span className="confirmation-top">Confirme seu pedido</span>
-                    <div className="items">
-                        <div className="dish">
-                            <span className="dish-name"></span>
-                            <span className="dish-price"></span>
-                        </div>
-                        <div className="drink">
-                            <span className="drink-name"></span>
-                            <span className="drink-price"></span>
-                        </div>
-                        <div className="dessert">
-                            <span className="dessert-name"></span>
-                            <span className="dessert-price"></span>
-                        </div>
-                        
-                    </div>
-                    <div className="total">
-                        <span>TOTAL</span>
-                        <span className="total-price"></span>
-                    </div>
-                    <div>
-                        <div className="confirmation">
-                            <span>Tudo certo, pode pedir!</span>
-                        </div>
-                        <div className="cancel">
-                            <span>Cancelar</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {menu.map((items) => <Category items={items} />)}
+            <FinishOrder state={state} order={order} />
         </div>
     );
 }
