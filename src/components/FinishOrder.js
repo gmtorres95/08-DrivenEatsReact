@@ -1,4 +1,4 @@
-export function Footer() {
+export function FinishOrder() {
     return (
         <div className="bottom-bar">
             <div className="not-ready">
