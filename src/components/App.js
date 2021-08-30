@@ -3,18 +3,33 @@ import { Category } from "./Category";
 import { FinishOrder } from "./FinishOrder";
 import { Header } from "./Header";
 
+function updateOrder(menu) {
+    const order = [];
+    for(let i = 0; i < menu.length; i++) {
+        for(let j = 0; j < menu[i].options.length; j++) {
+            if(menu[i].options[j].amount > 0) {
+                order.push({
+                    name: `${menu[i].options[j].amount}x ${menu[i].options[j].name }`,
+                    price: menu[i].options[j].price * menu[i].options[j].amount
+                });
+            }
+        }
+    }
+    return order;
+}
+
 function countAmount(listOfItens) {
     let counter = 0;
     listOfItens.forEach((iten) => counter += iten.amount)
     return counter;
 }
 
-function checkIfReady(menu) {
+function updateState(menu) {
     const dishesAmount = countAmount(menu[0].options);
     const drinksAmount = countAmount(menu[1].options);
     const dessertsAmount = countAmount(menu[2].options);
-    if(dishesAmount && drinksAmount && dessertsAmount) return true;
-    return false;
+    if(dishesAmount && drinksAmount && dessertsAmount) return {classStyle: "ready", text: "Fechar Pedido"};
+    return {classStyle: "not-ready", text: "Selecione os 3 itens para fechar o pedido"};
 }
 
 export default function App() {
@@ -35,7 +50,6 @@ export default function App() {
     const [cookieAmount, SetCookieAmount] = useState(0);
     const [pipocoAmount, SetPipocoAmount] = useState(0);
     const [gelatinaAmount, SetGelatinaAmount] = useState(0);
-
     const menu = [
         {
             title: "Primeiro, seu prato",
@@ -189,16 +203,13 @@ export default function App() {
             ]
         }
     ]
-    
-    let state = {
-        classStyle: "not-ready",
-        text: "Selecione os 3 itens para fechar o pedido"
-    }
+    let order = [];
+    let state = {}
 
-    if(checkIfReady(menu)) {
-        state.classStyle = "ready";
-        state.text = "Fechar Pedido";
-    }
+    state = updateState(menu);
+    order = updateOrder(menu);
+
+    console.log(order);
 
     return (
         <div>
