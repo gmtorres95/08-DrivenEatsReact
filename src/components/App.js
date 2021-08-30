@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Category } from "./Category";
 import { FinishOrder } from "./FinishOrder";
 import { Header } from "./Header";
+import { assets } from "../assets/assets"
+
 
 function updateOrder(menu) {
     const order = [];
@@ -66,7 +68,7 @@ export default function App() {
             title: "Primeiro, seu prato",
             options: [
                 {
-                    img: "/media/pratos/strogonoff.jpeg",
+                    img: assets.strogonoff,
                     name: "Strogonoff de Frango",
                     description: "Arroz, strogonoff de frango e batata palha.",
                     price: 13.9,
@@ -75,7 +77,7 @@ export default function App() {
                     SetAmount: SetStrogonoffAmount
                 },
                 {
-                    img: "/media/pratos/parmegiana.jpeg",
+                    img: assets.parmegiana,
                     name: "Frango à Parmegiana",
                     description: "Arroz, fritas, frango à parmegiana e salada.",
                     price: 15.4,
@@ -84,7 +86,7 @@ export default function App() {
                     SetAmount: SetParmegianaAmount
                 },
                 {
-                    img: "/media/pratos/milanesa.jpeg",
+                    img: assets.milanesa,
                     name: "Frango à Milanesa",
                     description: "Arroz, farofa, fritas e frango à milanesa.",
                     price: 15.9,
@@ -93,7 +95,7 @@ export default function App() {
                     SetAmount: SetMilanesaAmount
                 },
                 {
-                    img: "/media/pratos/grelhado.jpeg",
+                    img: assets.grelhado,
                     name: "Frango Grelhado",
                     description: "Arroz, feijão, farofa e frango grelhado.",
                     price: 14.9,
@@ -102,7 +104,7 @@ export default function App() {
                     SetAmount: SetGrelhadoAmount
                 },
                 {
-                    img: "/media/pratos/liguiça.jpeg",
+                    img: assets.linguica,
                     name: "Linguiça de Lombo",
                     description: "Arroz, feijão, farofa, linguiça de lombo acebolada e salada.",
                     price: 14.4,
@@ -111,7 +113,7 @@ export default function App() {
                     SetAmount: SetLiguiçaAmount
                 },
                 {
-                    img: "/media/pratos/peixe.jpeg",
+                    img: assets.peixe,
                     name: "Peixe à Milanesa",
                     description: "Arroz, fritas, filé de peixe à milanesa e salada.",
                     price: 19.9,
@@ -125,7 +127,7 @@ export default function App() {
             title: "Agora, sua bebida",
             options: [
                 {
-                    img: "/media/bebidas/coca.jpeg",
+                    img: assets.coca,
                     name: "Coca-Cola",
                     description: "Lata de 350ml.",
                     price: 5,
@@ -134,7 +136,7 @@ export default function App() {
                     SetAmount: SetCocaAmount
                 },
                 {
-                    img: "/media/bebidas/kuat.jpeg",
+                    img: assets.kuat,
                     name: "Guaraná Kuat",
                     description: "Lata de 350ml.",
                     price: 4,
@@ -143,7 +145,7 @@ export default function App() {
                     SetAmount: SetKuatAmount
                 },
                 {
-                    img: "/media/bebidas/sprite.jpeg",
+                    img: assets.sprite,
                     name: "Sprite",
                     description: "Lata de 350ml.",
                     price: 4.5,
@@ -152,7 +154,7 @@ export default function App() {
                     SetAmount: SetSpriteAmount
                 },
                 {
-                    img: "/media/bebidas/mate.jpeg",
+                    img: assets.mate,
                     name: "Chá Gelado Mate",
                     description: "Garaffa de 450ml sabor limão.",
                     price: 6,
@@ -161,7 +163,7 @@ export default function App() {
                     SetAmount: SetMateAmount
                 },
                 {
-                    img: "/media/bebidas/agua.jpeg",
+                    img: assets.agua,
                     name: "Água Mineral",
                     description: "Garaffa de 500ml sem gás.",
                     price: 1,
@@ -175,7 +177,7 @@ export default function App() {
             title: "Por fim, sua sobremesa",
             options: [
                 {
-                    img: "/media/sobremesas/bombom.jpeg",
+                    img: assets.bombom,
                     name: "Bombom de Morango",
                     description: "Com brigadeiro cremoso e casquinha de chocolate!",
                     price: 3,
@@ -184,7 +186,7 @@ export default function App() {
                     SetAmount: SetBombomAmount
                 },
                 {
-                    img: "/media/sobremesas/bolo.jpeg",
+                    img: assets.bolo,
                     name: "Bolo de Brigadeiro de Caramelo",
                     description: "Nossa receita especial, recheado com Nutella.",
                     price: 9,
@@ -193,7 +195,7 @@ export default function App() {
                     SetAmount: SetBoloAmount
                 },
                 {
-                    img: "/media/sobremesas/brownie.jpeg",
+                    img: assets.brownie,
                     name: "Brownie",
                     description: "Ideal para comer tomando um cafézinho.",
                     price: 8,
@@ -202,7 +204,7 @@ export default function App() {
                     SetAmount: SetBrownieAmount
                 },
                 {
-                    img: "/media/sobremesas/cookie.jpeg",
+                    img: assets.cookie,
                     name: "Cookie de Chocotone",
                     description: "Massa de laranja, com gotas de chocolate e recheado com Nutella!",
                     price: 6,
@@ -211,7 +213,7 @@ export default function App() {
                     SetAmount: SetCookieAmount
                 },
                 {
-                    img: "/media/sobremesas/pipoco.jpeg",
+                    img: assets.pipoco,
                     name: "Pipoco",
                     description: "Nosso brigadeiro que estoura na boca! Recheado com leite condensado.",
                     price: 5,
@@ -220,7 +222,7 @@ export default function App() {
                     SetAmount: SetPipocoAmount
                 },
                 {
-                    img: "/media/sobremesas/gelatina.jpeg",
+                    img: assets.gelatina,
                     name: "Gelatina de Morango Recheada",
                     description: "Nossa famosa gelatina recheada de leite condensado.",
                     price: 2.5,
