@@ -1,33 +1,29 @@
-import React, {useState} from "react";
-
 export function Option(props) {
     const {
         img,
         name,
         description,
         price,
-        amount
+        amount,
+        SetAmount
     } = props.option;
 
-    const [number, setNumber] = useState(amount);
-    let classes = "";
-
-    if(number > 0) classes = "option selected";
-    else classes = "option";
-
+    let classes = "option";
+    if(amount > 0) classes = "option selected";
+    
     return (
         <div className={classes}>
             <div>
-                <img src={img} alt={name} onClick={() => setNumber(number + 1)} />
+                <img src={img} alt={name} onClick={() => SetAmount(amount + 1)}/>
                 <h3>{name}</h3>
                 <p className="description">{description}</p>
             </div>
             <div className="option-footer">
                 <p>R$ {price.toFixed(2).replace(".",",")}</p>
                 <Amount
-                    number={number}
-                    addNumber={() => setNumber(number + 1)}
-                    removeNumber={() => (number > 0) ? setNumber(number - 1) : setNumber(0)}
+                    number={amount}
+                    addNumber={() => SetAmount(amount + 1)}
+                    removeNumber={() => SetAmount(amount - 1)}
                 />
             </div>
         </div>
