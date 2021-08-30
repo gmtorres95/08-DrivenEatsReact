@@ -1,11 +1,16 @@
 import { Option } from "./Option";
 
-export function Category() {
+export function Category(props) {
+    const {
+        options,
+        title
+    } = props;
+
     return (
-        <div class="category">
-            <h2>Primeiro, seu prato</h2>
-            <div class="options dish">
-                <Option />
+        <div className="category">
+            <h2>{title}</h2>
+            <div className="options dish">
+                {options.map((option) => (<Option option={option}/>))}
             </div>
         </div>
     );

@@ -76,11 +76,19 @@ body {
   color: #a6a6a6;
   margin-bottom: 8px;
 }
-.price {
+.option-footer {
+  display: flex;
+  justify-content: space-between;
   font-family: roboto;
   font-size: 16px;
   font-weight: 400;
   bottom: 0;
+}
+.add {
+  color: #32b72f;
+}
+.remove {
+  color: #CF2B2B;
 }
 .dummy {
   min-width: 12px; /*This will give the last item a little margin to the right */
@@ -94,6 +102,7 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1;
   box-sizing: border-box;
 }
 .not-ready {
@@ -133,13 +142,6 @@ body {
 /* Selected item and checkmark configurations */
 .selected {
   box-shadow: 0px 0px 0px 5px #32b72f inset;
-}
-ion-icon {
-  position: absolute;
-  bottom: 12px;
-  right: 12px;
-  font-size: 22px;
-  color: #32b72f;
 }
 /* Checkout window configurations */
 .checkout-window {
