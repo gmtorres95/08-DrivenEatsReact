@@ -1,6 +1,6 @@
-# <img src="./public/favicon.png" height="24px" />  DrivenEats
+# <img src="./public/favicon.png" height="24px" /> DrivenEats
 
-Manage your habits and create new ones!  
+Order food online with DrivenEats!  
 Check the this application in production [here](https://driven-eats-react-one.vercel.app)
 
 ## Technologies
